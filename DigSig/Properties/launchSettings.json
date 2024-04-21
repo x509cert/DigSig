@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DigSig": {
+      "commandName": "Project",
+      "commandLineArgs": "s msg.txt"
+    }
+  }
+}
