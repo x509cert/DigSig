@@ -2,6 +2,8 @@
 using System.Security.Cryptography.Pkcs;
 using System.Text;
 
+const string pkcs7Ext = ".p7s";
+
 if (args.Length != 2)
 {
     Console.WriteLine("Usage: DigSig s|v filename");
@@ -13,12 +15,12 @@ if (args[0] == "s")
     var data = File.ReadAllBytes(args[1]);
     var signingCert = LoadCertificate("mikehow@microsoft.com");
     var signedData = SignData(data, signingCert);
-    File.WriteAllBytes(args[1] + ".p7s", signedData);
+    File.WriteAllBytes(args[1] + pkcs7Ext, signedData);
 }
 else if (args[0] == "v")
 {
     var filename = args[1];
-    if (!filename.EndsWith(".p7s"))
+    if (!filename.EndsWith(pkcs7Ext))
     {
         Console.WriteLine("Invalid file type.");
         return;
