@@ -2,14 +2,14 @@
 using System.Security.Cryptography.Pkcs;
 using System.Text;
 
-const string pkcs7Ext = ".p7s";
-
 if (args.Length != 2)
 {
     Console.WriteLine("Usage: DigSig s|v filename");
     return;
 }
 
+
+const string pkcs7Ext = ".p7s";
 if (args[0] == "s")
 {
     var data = File.ReadAllBytes(args[1]);
@@ -29,8 +29,8 @@ else if (args[0] == "v")
     var signedData = File.ReadAllBytes(filename);
     var valid = VerifyData(signedData);
     Console.WriteLine($"Signature is valid: {valid}");
-    
-    if (valid) 
+
+    if (valid)
         DisplayContent(signedData);
 }
 else
